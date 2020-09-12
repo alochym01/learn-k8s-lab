@@ -54,12 +54,11 @@ spec:
         Port:           80/TCP
         Host Port:      0/TCP
         State:          Running
-        Started:      Sat, 12 Sep 2020 16:52:43 +0700
+        Started:        Sat, 12 Sep 2020 16:52:43 +0700
         Ready:          True
         Restart Count:  0
         Environment:    <none>
-        Mounts:
-        /var/run/secrets/kubernetes.io/serviceaccount from default-token-wltt4 (ro)
+        Mounts:         /var/run/secrets/kubernetes.io/serviceaccount from default-token-wltt4 (ro)
     Conditions:
     Type              Status
     Initialized       True
@@ -74,7 +73,7 @@ spec:
     QoS Class:       BestEffort
     Node-Selectors:  <none>
     Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
-                    node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+                     node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
     Events:
     Type     Reason       Age   From               Message
     ----     ------       ----  ----               -------
