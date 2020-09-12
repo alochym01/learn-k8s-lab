@@ -2,21 +2,21 @@
 ## Lab requirements
 
 1.  Create a simple pod file using `nginx alpine` with format yaml
-```yaml
-# simple-alpine-nginx.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-spec:
-  containers:
-  - name: nginx
-    image: nginx:alpine
-    ports:
-    - containerPort: 80
-      name: http
-      protocol: TCP
-```
+    ```yaml
+    # simple-alpine-nginx.yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+    name: nginx
+    spec:
+    containers:
+    - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        name: http
+        protocol: TCP
+    ```
 2.  Using kubectl to:
     -   apply pod to k8s - `kubectl apply -f simple-alpine-nginx.yaml`
     -   get event after apply pods - `kubectl get events | grep -i $podname`
