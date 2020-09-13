@@ -7,15 +7,15 @@
     apiVersion: v1
     kind: Pod
     metadata:
-    name: nginx
+        name: nginx
     spec:
     containers:
     - name: nginx
         image: nginx:alpine
         ports:
-        - containerPort: 80
-        name: http
-        protocol: TCP
+        -   containerPort: 80
+            name: http
+            protocol: TCP
     ```
 2.  Using kubectl to:
     -   apply pod to k8s - `kubectl apply -f simple-alpine-nginx.yaml`
