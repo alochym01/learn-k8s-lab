@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: alochym-namespace
+  namespace: alochym
+spec:
+  limits:
+    - max:
+        memory: 1Gi
+      min:
+        memory: 500Mi
+      type: Container
