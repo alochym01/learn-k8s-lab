@@ -10,7 +10,7 @@
         name: nginx
     spec:
     containers:
-    - name: nginx
+    -   name: nginx
         image: nginx:alpine
         ports:
         -   containerPort: 80
