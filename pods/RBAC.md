@@ -1,20 +1,19 @@
 # Lab RBAC
 ## Lab requirements
 1.  Create user alochym
-    1.  Create a user alochym in linux
-    2.  Create public and private key using openSSL
+    1.  Create public and private key using openSSL
         ```bash
         openssl genrsa -out alochym.key 2048
         ```
-    3.  Create Certitcate Request Signing(csr) file
+    2.  Create Certitcate Request Signing(csr) file
         ```bash
         openssl req -new -key alochym.key -out alochym.csr -subj "/CN=alochym/O=alochym"
         ```
-    4.  Encode csr file
+    3.  Encode csr file
         ```bash
         cat alochym.csr | base64 | tr -d '\n'
         ```
-    5.  Issue csr file to kubernetes cluster for approving
+    4.  Issue csr file to kubernetes cluster for approving - `can be use kubernetes the hard way`
         ```yaml
         apiVersion: certificates.k8s.io/v1beta1
         kind: CertificateSigningRequest
@@ -30,19 +29,19 @@
             -   key encipherment
             -   client auth
         ```
-    6.  check issued csr request on kubernetes cluster for approving
+    5.  check issued csr request on kubernetes cluster for approving - `can be use kubernetes the hard way`
         ```bash
         kubectl get csr
         ```
-    7.  Approve the csr request
+    6.  Approve the csr request - `can be use kubernetes the hard way`
         ```bash
         kubectl certificate approve alochym-csr
         ```
-    8.  Download the csr request
+    7.  Download the csr request - `can be use kubernetes the hard way`
         ```bash
         kubectl get csr alochym-csr -o jsonpath='{.status.certificate}' | base64 -d > alochym.crt
         ```
-    9.  Create kubeconfig file
+    8.  Create kubeconfig file
         1.  set user
             ```bash
             kubectl config set-credentials alochym --client-certificate=alochym.crt --client-key=alochym.key
