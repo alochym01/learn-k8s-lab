@@ -6,7 +6,7 @@
     apiVersion: v1
     kind: Namespace
     metadata:
-    name: alochym
+        name: alochym
     ```
 2.  Create a pod in namespace `alochym` - `kubectl apply -f pod-w-namespace.yaml`
     ```yaml
