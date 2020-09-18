@@ -71,7 +71,7 @@
     kind: Role
     metadata:
         name: alochym
-        namespace: default
+        namespace: alochym
     rules:
     -   apiGroups: ["", "apps"]
         resources: ["*"]
@@ -83,7 +83,7 @@
     kind: RoleBinding
     metadata:
         name: alochym-rolebinding
-        namespace: default
+        namespace: alochym
     subjects:
     -   kind: User
         name: alochym
