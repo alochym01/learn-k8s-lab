@@ -1,0 +1,49 @@
+# presistent volume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume
+  labels:
+    type: local
+spec:
+  # Retain, Delete, Recycle
+  # Recycle policy is deprecated. Instead, the recommended approach is to use dynamic provisioning.
+  persistentVolumeReclaimPolicy: Recycle # what happens PersistentVolumeClaim is deleted
+  capacity:
+    storage: 10Gi # The configuration also specifies a size of 10 gibibytes
+  accessModes:
+    - ReadWriteOnce # access mode of ReadWriteOnce
+  hostPath:
+    path: "/home/hadn/volume" # folder /home/hadn/volume must exist on the Node
+---
+# presistent volume claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+# pod-w-pv-pvc.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pv-pod
+spec:
+  volumes:
+    - name: pv-storage
+      persistentVolumeClaim:
+        claimName: pvc-volume # Mounting PersistentVolumeClaim to POD
+  containers:
+    - name: pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: pv-storage # Mounting PODS Volume to Container
