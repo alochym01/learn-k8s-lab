@@ -79,7 +79,7 @@
             stats uri /stats
             stats refresh 10s
         ```
-    5.  Start haproxy server - `sudo systemctl start haproxy.cfg`
+    5.  Start haproxy server - `sudo systemctl start haproxy`
 3.  3 master nodes
     -   General setup
         1.  `sudo swapoff -v /swappfile`
