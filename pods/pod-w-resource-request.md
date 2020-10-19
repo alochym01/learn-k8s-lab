@@ -4,24 +4,18 @@
 -   The POD is created with minium resource
     -   cpu=500m(1/2 cpu)
     -   memory=128Mi
--   The POD is created with maxium resource
-    -   cpu=1(1 cpu)
-    -   memory=256Mi
 1.  Create a simple pod file using `nginx alpine` with format yaml
     ```yaml
     # simple-alpine-w-label-nginx.yaml
     apiVersion: v1
     kind: Pod
     metadata:
-        name: pod-with-resource-limit
+        name: pod-with-resource-request
     spec:
         containers:
         -   name: nginx
             image: nginx:1.18.0-alpine
             resources:
-                limits:
-                    cpu: "1"
-                    memory: "256Mi"
                 requests:
                     cpu: "500m"
                     memory: "128Mi"
@@ -36,14 +30,12 @@
         ```bash
         hadn@master-1:~/lab$ kubectl get pods -owide
         NAME                              READY   STATUS    RESTARTS   AGE   IP               NODE       NOMINATED NODE   READINESS GATES
-        pod-with-resource-limit           1/1     Running   0          92s   172.16.226.105   worker-1   <none>           <none>
         pod-with-resource-request         1/1     Running   0          36m   172.16.226.86    worker-1   <none>           <none>
         ```
     -   Check result - `kubectl describe node worker-1`
         ```bash
         Namespace                   Name                                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  AGE
         ---------                   ----                                         ------------  ----------  ---------------  -------------  ---
-        default                     pod-with-resource-limit                      500m (12%)    1 (25%)     128Mi (1%)       256Mi (3%)     4s
         default                     pod-with-resource-request                    500m (12%)    0 (0%)      128Mi (1%)       0 (0%)         35m
         ingress-nginx               ingress-nginx-controller-7896b4fbd4-6wvnt    100m (2%)     0 (0%)      90Mi (1%)        0 (0%)         28d
         kube-system                 calico-node-gdjrg                            250m (6%)     0 (0%)      0 (0%)           0 (0%)         41d
@@ -66,10 +58,10 @@
     -   get all pod with labels
         -   `kubectl get pods --selector key=value -o [wide|yaml|json]`
         -   `kubectl get pods -l key=value -o [wide|yaml|json]`
-            ```bash
-            NAME    READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
-            nginx   1/1     Running   0          36m   172.17.0.3   minikube   <none>           <none>
-            ```
+        ```bash
+        NAME    READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+        nginx   1/1     Running   0          36m   172.17.0.3   minikube   <none>           <none>
+        ```
     -   get details of pod - `kubectl describe pods $podname`
         ```bash
         Name:         nginx
