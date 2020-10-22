@@ -1,5 +1,8 @@
 # Lab pod with namespace
 ## Lab requirements
+-   Create namespace is alochym
+-   Apply limit range object to alochym's namespace
+-   Create pod without resource constrained
 1.  Create namespace `alochym` - `kubectl apply -f namespace.yaml`
     ```yaml
     # namespace.yaml
@@ -20,12 +23,12 @@
             app: nginx
     spec:
     containers:
-        - name: nginx
-        image: nginx:alpine
-        ports:
-            - containerPort: 80
-            name: http
-            protocol: TCP
+        -   name: nginx
+            image: nginx:1.18.0-alpine
+            ports:
+            -   containerPort: 80
+                name: http
+                protocol: TCP
     ```
 3.  Using kubectl
     1.  list namespace - `kubectl get namespace| kubectl get ns`
@@ -62,8 +65,10 @@
     spec:
         limits:
         -   max:
+                cpu: "1"
                 memory: 1Gi
             min:
+                cpu: "125m"
                 memory: 500Mi
             type: Container # can be Pod
     ```
@@ -75,3 +80,10 @@
     2.  check pod create in step 2 for resource request/ resource limit - `kubectl get pods nginx -n alochym -o yaml` => there is no resource apply from limit range
     3.  delete pod in step 2 and recreate pod
         1.  check pod create in step 4.3 and get result => the limit range is apply to pod
+            ```bash
+            Namespace                   Name                                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  AGE
+            ---------                   ----                                         ------------  ----------  ---------------  -------------  ---
+            alochym                     nginx                                        1 (25%)       1 (25%)     1Gi (13%)        1Gi (13%)      11s
+            default                     pod-with-resource-limit                      500m (12%)    1 (25%)     128Mi (1%)       256Mi (3%)     33m
+            default                     pod-with-resource-request                    500m (12%)    0 (0%)      128Mi (1%)       0 (0%)         68m
+            ```
