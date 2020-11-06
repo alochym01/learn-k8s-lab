@@ -1,12 +1,12 @@
 # Working with Namespace
 
 ## Question
- -   Create a Namespace ckad-ns1 in your cluster. In this namespace, run the following Pods:
+-   Create a Namespace ckad-ns1 in your cluster. In this namespace, run the following Pods:
     1.  A Pod with the name pod-a, running the httpd server image
     2.  A Pod with the name pod-b, running the nginx server image as well as the alpine image
 
 ## Solution
-1 .  Create namespace with --dry-run cli
+1.  Create namespace with --dry-run cli
     1.  `kubectl create ns ckad-ns1 --dry-run=client -o yaml > ns-ckad-ns-1.yaml`
         ```bash
         apiVersion: v1
