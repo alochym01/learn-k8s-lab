@@ -8,3 +8,4 @@
 -   https://www.edx.org/course/fundamentals-of-containers-kubernetes-and-red-hat
 -   https://collabnix.github.io/kubelabs/
 -   https://kubernetesbyexample.com/
+-   **https://ravikirans.com/cka-kubernetes-exam-study-guide/**
