@@ -9,3 +9,4 @@
 -   https://collabnix.github.io/kubelabs/
 -   https://kubernetesbyexample.com/
 -   **https://ravikirans.com/cka-kubernetes-exam-study-guide/**
+-   **https://www.bookstack.cn/read/kubernetes-1.17-setup/d144af1504b81c85.md**
