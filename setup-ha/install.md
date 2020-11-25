@@ -3,6 +3,9 @@
 ## Requirements
 1.  OS
     1.  Ubuntu 18
+        -   Hardware requirements minimal
+            -   RAM: 2G
+            -   CPU: 2
     2.  docker container CE
     3.  kubernetes version 1.18
     4.  HA Proxy version 2.2 act as loadbalancer
