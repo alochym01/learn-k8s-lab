@@ -70,8 +70,8 @@
             name: pv-storage  # Mounting PODS Volume to Container
     ```
     1.  Create some files
-        1.1   `kubectl exec -it pv-pod -- sh`
-        1.2   `env | tee /usr/share/nginx/html/alochym.txt`
+        -   `kubectl exec -it pv-pod -- sh`
+        -   `env | tee /usr/share/nginx/html/alochym.txt`
 4.  Check directory on Node which is hosted hostPath - `cat /home/hadn/volume/alochym.txt`
     ```bash
     KUBERNETES_SERVICE_PORT=443
