@@ -6,6 +6,7 @@ metadata:
   labels:
     type: local
 spec:
+  storageClassName: alochym
   # Retain, Delete, Recycle
   # Recycle policy is deprecated. Instead, the recommended approach is to use dynamic provisioning.
   persistentVolumeReclaimPolicy: Recycle # what happens PersistentVolumeClaim is deleted
@@ -22,6 +23,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvc-volume
 spec:
+  storageClassName: alochym
   accessModes:
     - ReadWriteOnce
   resources:

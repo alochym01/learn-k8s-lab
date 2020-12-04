@@ -10,15 +10,16 @@
         labels:
             type: local
     spec:
+        storageClassName: manual
         # Retain, Delete, Recycle
         # Recycle policy is deprecated. Instead, the recommended approach is to use dynamic provisioning.
         persistentVolumeReclaimPolicy: Recycle # what happens PersistentVolumeClaim is deleted
         capacity:
-            storage: 10Gi    # The configuration also specifies a size of 10 gibibytes
+          storage: 10Gi    # The configuration also specifies a size of 10 gibibytes
         accessModes:
-            - ReadWriteOnce    # access mode of ReadWriteOnce
+        - ReadWriteOnce    # access mode of ReadWriteOnce
         hostPath:
-            path: "/home/hadn/volume"  # folder /home/hadn/volume must exist on the Node
+          path: "/home/hadn/volume"  # folder /home/hadn/volume must exist on the Node
     ```
     1.  Check result - `kubectl get pv -owide`
         ```bash
@@ -32,11 +33,12 @@
     metadata:
         name: pvc-volume
     spec:
+        storageClassName: manual
         accessModes:
-            - ReadWriteOnce
+        - ReadWriteOnce
         resources:
-            requests:
-                storage: 3Gi
+          requests:
+            storage: 3Gi
     ```
     1.  Check result - `kubectl get pv,pvc`
         ```yaml
@@ -54,22 +56,22 @@
         name: pv-pod
     spec:
         volumes:
-            -   name: pv-storage
-                persistentVolumeClaim:
-                    claimName: pvc-volume # Mounting PersistentVolumeClaim to POD
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: pvc-volume # Mounting PersistentVolumeClaim to POD
         containers:
-            - name: pv-container
-                image: nginx
-                ports:
-                    -   containerPort: 80
-                        name: "http-server"
-                volumeMounts:
-                    -   mountPath: "/usr/share/nginx/html"
-                        name: pv-storage  # Mounting PODS Volume to Container
+        - name: pv-container
+          image: nginx
+          ports:
+          - containerPort: 80
+            name: "http-server"
+          volumeMounts:
+          - mountPath: "/usr/share/nginx/html"
+            name: pv-storage  # Mounting PODS Volume to Container
     ```
     1.  Create some files
-        -   `kubectl exec -it pv-pod -- sh`
-        -   `env | tee /usr/share/nginx/html/alochym.txt`
+        1.1   `kubectl exec -it pv-pod -- sh`
+        1.2   `env | tee /usr/share/nginx/html/alochym.txt`
 4.  Check directory on Node which is hosted hostPath - `cat /home/hadn/volume/alochym.txt`
     ```bash
     KUBERNETES_SERVICE_PORT=443
