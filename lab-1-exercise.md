@@ -88,7 +88,7 @@
     5.  reference httpd server - https://hub.docker.com/_/httpd
 
 3.  A Pod with the name pod-b, running the nginx server image as well as the alpine image
-    1.  `kubectl run pod-b --image=nginx:1.18-1-alpine --dry-run=client -o yaml > pod-b.yaml`
+    1.  `kubectl run pod-b --image=nginx:1.18.0-alpine --dry-run=client -o yaml > pod-b.yaml`
     2.  edit pod-b.yaml and then append `namespace: ckad-ns1`, add image alpine
         ```bash
         apiVersion: v1
@@ -151,5 +151,5 @@
         </body>
         </html>
         ```
-    5.  reference link - https://hub.docker.com/_/nginx 
+    5.  reference link - https://hub.docker.com/_/nginx, https://brandonwillmott.com/2020/09/03/backup-and-restore-etcd-in-kubernetes-cluster-for-cka-v1-19/
 

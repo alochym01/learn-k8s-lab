@@ -203,3 +203,5 @@
 5.  Check Installation
     -   `kubectl cluster-info`
     -   `kubectl get nodes`
+6.  Reference Link
+    -   https://www.velotio.com/engineering-blog/demystifying-high-availability-in-kubernetes-using-kubeadm
