@@ -120,7 +120,7 @@
 2.  `apt-get update && apt-get install -y kubeadm=1.19.4-00`
 3.  `apt-mark hold kubeadm`
 4.  Verify kubeadm version - `kubeadm version`
-### Make unscheduleable of control plane
+### Make unscheduleable of Worker node
 1.  `kubectl drain worker-1 --ignore-daemonsets` - **should run on master node terminal session**
     ```bash
     node/worker-1 cordoned
@@ -132,7 +132,6 @@
     pod/coredns-66bff467f8-zgxt6 evicted
     pod/coredns-66bff467f8-8fdp7 evicted
     node/worker-1 evicted
-    ```
     ```
 3.  Upgrade k8s to version 1.19.4 - `kubeadm upgrade node`
     ```bash
