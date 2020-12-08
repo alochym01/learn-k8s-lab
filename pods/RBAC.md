@@ -109,3 +109,6 @@
     gin-deployment-7b67858ddd-rg4tj   1/1     Running   0          3d7h
     gin-deployment-7b67858ddd-w282t   1/1     Running   0          3d7h
     ```
+7.  Reference link
+    1.  https://www.howtoforge.com/role-based-access-control-rbac-in-kubernetes/
+    2.  https://thenewstack.io/three-realistic-approaches-to-kubernetes-rbac/
