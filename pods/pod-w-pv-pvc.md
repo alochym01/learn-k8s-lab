@@ -19,6 +19,8 @@
         accessModes:
         - ReadWriteOnce    # access mode of ReadWriteOnce
         hostPath:
+          # The volume itself does not contain scheduling information.
+          # If you want to fix each pod on a node, you need to configure scheduling information, such as nodeSelector, for the pod
           path: "/home/hadn/volume"  # folder /home/hadn/volume must exist on the Node
     ```
     1.  Check result - `kubectl get pv -owide`
