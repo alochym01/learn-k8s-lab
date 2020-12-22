@@ -1,3 +1,5 @@
+# Create a Pod called redis-storage with image: redis:alpine with a Volume of type emptyDir that lasts for the life of the Pod. Use volumeMount with mountPath = /data/redis.
+# kubectl -n practice exec -it -- ls /data/redis
 apiVersion: v1
 kind: Pod
 metadata:

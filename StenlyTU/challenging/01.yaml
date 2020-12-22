@@ -1,5 +1,7 @@
 # Create an nginx pod called nginx-resolver using image nginx, expose it internally with a service called nginx-resolver-service.
 # Test that you are able to look up the service and pod names from within the cluster. Use the image: busybox:1.28 for dns lookup.
+# kubectl exec -it nginx-resolver -n practice -- nslookup nginx-resolver # service name
+# kubectl exec -it nginx-resolver -n practice -- nslookup pod-ip # 10-1-189-222
 apiVersion: v1
 kind: Service
 metadata:
