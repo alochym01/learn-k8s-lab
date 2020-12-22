@@ -1,0 +1,20 @@
+# Schedule a nginx pod based on node label using nodeSelector.
+# Taint node with taint 'disk=ssd'
+# kubectl taint node worker-1 disk=ssh
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-node-selector
+  name: nginx-node-selector
+spec:
+  nodeSelector:
+    disktype: ssd
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx-node-selector
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

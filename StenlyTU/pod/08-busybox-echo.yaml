@@ -1,0 +1,22 @@
+# Create a busybox-echo pod that echoes 'hello world' and exits. After that check the logs.
+# kubectl run busybox-echo -n practice --image=busybox --restart=Never --dry-run=client -oyaml --command -- echo "hello world" |tee 08-busybox-echo.yaml
+# kubectl logs busybox-echo -n practice
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox-echo
+  name: busybox-echo
+  namespace: practice
+spec:
+  containers:
+  - command:
+    - echo
+    - hello world
+    image: busybox
+    name: busybox-echo
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

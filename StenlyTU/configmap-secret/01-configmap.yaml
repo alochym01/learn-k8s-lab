@@ -1,0 +1,13 @@
+# Create a configmap named my-config with values key1=val1 and key2=val2. Check it's values
+# kubectl create configmap my-config -n practice --from-literal=key1=val1 --from-literal=key2=value2 --dry-run=client -oyaml > 01-configmap.yaml
+# kubectl get configmap -n practice
+# kubectl describe configmap my-config -n practice
+apiVersion: v1
+data:
+  key1: val1
+  key2: val2
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: my-config
+  namespace: practice

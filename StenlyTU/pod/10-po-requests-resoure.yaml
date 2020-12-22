@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod-request-resource
+  name: pod-request-resource
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: pod-request-resource
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

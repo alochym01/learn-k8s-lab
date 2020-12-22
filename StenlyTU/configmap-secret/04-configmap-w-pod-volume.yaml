@@ -1,0 +1,27 @@
+# Create a configmap 'my-config' with values 'key1=val1' and 'key2=val2'. Load this configmap as a volume into a nginx-sec pod.
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx-cm-2
+  namespace: practice
+spec:
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx
+    resources: {}
+    volumeMounts:
+      - name: config-volume
+        mountPath: /etc/spartaa
+    envFrom:
+      - configMapRef:
+          name: my-config
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

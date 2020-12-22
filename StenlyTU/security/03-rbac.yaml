@@ -1,0 +1,36 @@
+# https://www.oreilly.com/library/view/kubernetes-security/9781492039075/ch04.html -- serviceAccount 
+# - kubectl auth can-i get replicaset -n default --as=system:serviceaccount:default:employee
+# https://docs.bitnami.com/tutorials/configure-rbac-in-your-kubernetes-cluster/#step-3-create-the-role-for-managing-deployments -- userAccount
+# - kubectl auth can-i $action $resource --as $subject
+# - kubectl auth can-i list pods --as alochym
+# Use case 1: Create user with limited namespace access
+# Username: employee
+# Group: bitnami
+# Create the role for managing deployments
+  ```bash
+  kind: Role
+  apiVersion: rbac.authorization.k8s.io/v1beta1
+  metadata:
+    namespace: office
+    name: deployment-manager
+  rules:
+  - apiGroups: ["", "extensions", "apps"]
+    resources: ["deployments", "replicasets", "pods"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"] # You can also use ["*"]  
+  ```
+# Bind the role to the employee user
+  ```bash
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1beta1
+  metadata:
+    name: deployment-manager-binding
+    namespace: office
+  subjects:
+  - kind: User # ServiceAccount
+    name: employee
+    apiGroup: ""
+  roleRef:
+    kind: Role
+    name: deployment-manager
+    apiGroup: ""  
+  ```

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox-pv-pvc
+  name: busybox-pv-pvc
+  namespace: practice
+spec:
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        claimName: mypvc-practice
+  containers:
+  - command:
+    - sleep
+    - "3600"
+    image: busybox
+    name: busybox-pv-pvc
+    volumeMounts:
+      - mountPath: /etc/foo
+        name: task-pv-storage
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

@@ -1,0 +1,57 @@
+# Create an nginx pod called nginx-resolver using image nginx, expose it internally with a service called nginx-resolver-service.
+# Test that you are able to look up the service and pod names from within the cluster. Use the image: busybox:1.28 for dns lookup.
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: nginx-resolver-service
+  namespace: practice
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx-resolver
+status:
+  loadBalancer: {}
+---
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-resolver
+  name: nginx-resolver
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx-resolver
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: dnsutils
+  name: dnsutils
+  namespace: practice
+spec:
+  containers:
+  - command:
+    - sleep
+    - "3600"
+    name: dnsutils
+    image: gcr.io/kubernetes-e2e-test-images/dnsutils:1.3
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

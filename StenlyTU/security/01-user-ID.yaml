@@ -1,0 +1,23 @@
+# Create busybox-user pod that runs sleep for 1 hour and has user ID set to 101. Check the UID from within the container.
+# kubectl exec -it -n practice busybox-user -- id -u
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox-user
+  name: busybox-user
+  namespace: practice
+spec:
+  securityContext:
+    runAsUser: 101
+  containers:
+  - command:
+    - sleep
+    - "3600"
+    image: busybox
+    name: busybox-user
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

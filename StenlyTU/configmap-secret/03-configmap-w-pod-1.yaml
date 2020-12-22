@@ -1,0 +1,20 @@
+# Create a configmap 'my-config' with values 'key1=val1' and 'key2=val2'. Load this configmap as an env variables into a nginx-sec pod.
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx-cm-1
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx
+    resources: {}
+    envFrom:
+      - configMapRef:
+          name: my-config
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

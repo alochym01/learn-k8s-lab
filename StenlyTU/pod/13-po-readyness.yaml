@@ -1,0 +1,27 @@
+# Create an nginx pod with a readyness probe that just runs the command 'ls'. Check probe status.
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod-ready-ness
+  name: pod-ready-ness
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: pod-ready-ness
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 80
+    resources:
+      limits:
+        cpu: 200m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

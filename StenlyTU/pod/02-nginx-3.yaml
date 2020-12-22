@@ -1,0 +1,21 @@
+# kubectl run nginx3 --image=nginx:1.18-alpine --restart=Always --labels="app=v1" -n practice --dry-run=client -oyaml |tee nginx3.yaml
+# Port name is http
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    app: v1
+  name: nginx3
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx3
+    ports:
+    - containerPort: 80
+      name: nginx3-http
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

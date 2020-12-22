@@ -1,0 +1,24 @@
+# Create an nginx-test pod and set an env value as 'var1=val1'. Check the env value existence within the pod.
+# kubectl -n practice run nginx-test --image=nginx:1.18-alpine --restart=Never --env=var1=val1 --dry-run=client -oyaml --command -- env |tee 09-pod-env.yaml
+# kubectl logs nginx-test -n practice
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-test
+  name: nginx-test
+  namespace: practice
+spec:
+  containers:
+  - command:
+    - env
+    env:
+    - name: var1
+      value: val1
+    image: nginx:1.18-alpine
+    name: nginx-test
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

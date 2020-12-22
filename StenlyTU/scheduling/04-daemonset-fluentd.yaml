@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: fluentd-es
+  name: fluentd-es
+spec:
+  selector:
+    matchLabels:
+      app: fluentd-es
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fluentd-es
+    spec:
+      containers:
+      - image: k8s.gcr.io/fluentd-elasticsearch:1.20
+        name: fluentd-elasticsearch
+        resources: {}

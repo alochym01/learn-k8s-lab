@@ -1,0 +1,28 @@
+# Create an nginx pod with a liveness probe that just runs the command 'ls'. Check probe status.
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod-live-ness
+  name: pod-live-ness
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: pod-live-ness
+    livenessProbe:
+      exec:
+        command:
+        - ls
+        - /
+    resources:
+      limits:
+        cpu: 200m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

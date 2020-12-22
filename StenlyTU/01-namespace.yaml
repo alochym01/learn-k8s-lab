@@ -1,0 +1,9 @@
+# Create namespace called: practice.
+# All following commands will be run into this namespace if not specified.
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: practice
+spec: {}
+status: {}

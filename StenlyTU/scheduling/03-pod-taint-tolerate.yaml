@@ -1,0 +1,34 @@
+# Taint a node with key=spray, value=mortein and effect=NoSchedule. Check that new pods are not scheduled on it.
+# kubectl taint node master-1 spray=mortein:NoSchedule
+# kubectl get nodes -o custom-columns="NAME:.metatdata.name,TAINT:.spec.taints
+# Create another pod called nginx-toleration with nginx image, which tolerates the above taint.
+# kubectl run nginx-tolerate --image=nginx:1.18-alpine --restart=Never
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx-tolerate
+  name: nginx-tolerate
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx-tolerate
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+  tolerations:
+    - key: "node-role.kubernetes.io/master"
+      operator: "Exists" # Equal/Exists
+      # PreferNoSchedule/NoSchedule/NoExecute/
+      effect: "NoSchedule" # An empty effect matches all effects with key key1.
+    - key: "spray"
+      operator: "Equal" # Equal/Exists
+      value: "mortein"
+      # PreferNoSchedule/NoSchedule/NoExecute/
+      effect: "NoSchedule" # An empty effect matches all effects with key key1.
+status: {}
+# untaint
+# kubectl taint node master-1 key=spray:NoSchedule- value=mortein:NoSchedule-
+

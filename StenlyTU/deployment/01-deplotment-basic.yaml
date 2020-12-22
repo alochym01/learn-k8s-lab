@@ -1,0 +1,29 @@
+# Create a deployment named hr-app using the image nginx:1.18 with 2 replicas.
+# kubectl -n practice create deploy hr-app --image=nginx:1.18-alpine --replicas=2 --dry-run=client -oyaml | tee 01-deplotment-basic.yaml
+# kubectl get deployments -n practice
+# kubectl get pods -n practice
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hr-app
+  name: hr-app
+  namespace: practice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hr-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hr-app
+    spec:
+      containers:
+      - image: nginx:1.18-alpine
+        name: nginx
+        resources: {}
+status: {}

@@ -1,0 +1,19 @@
+# Create a messaging pod using redis:alpine image with label set to tier=msg. Check pod's labels.
+# kubectl run messaging --image=redis:alpine --labels="tier=msg,a=b" -n practice --restart=Never --dry-run=client -oyaml | tee 06-redis.yaml
+# kubectl run messaging --image=redis:alpine -l tier=msg,a=b -n practice --restart=Never --dry-run=client -oyaml | tee 06-redis.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    tier: msg
+  name: messaging
+  namespace: practice
+spec:
+  containers:
+  - image: redis:alpine
+    name: messaging
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

@@ -1,0 +1,26 @@
+# Create the YAML for an nginx pod that has capabilities "NET_ADMIN" and "SYS_TIME".
+# kubectl exec -it -n practice busybox-netadmin -- cat /proc/1/status
+# CapInh:	00000000aa0435fb
+# CapPrm:	00000000aa0435fb
+# CapEff:	00000000aa0435fb
+# CapBnd:	00000000aa0435fb
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  name: busybox-netadmin
+  namespace: practice
+spec:
+  containers:
+  - command:
+    - sleep
+    - "3600"
+    image: busybox
+    name: busybox-user
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN", "SYS_TIME"]
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

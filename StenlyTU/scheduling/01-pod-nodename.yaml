@@ -1,0 +1,20 @@
+# Shedule a nginx pod on specific node using NodeName.
+# kubectl get nodes
+# kubectl get po -n practice -owide
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+  namespace: practice
+spec:
+  nodeName: master-1
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

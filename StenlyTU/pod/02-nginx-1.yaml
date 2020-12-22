@@ -1,0 +1,18 @@
+# Create two pods with names nginx1 and nginx2 into your namespace. All of them should have the label app=v1.
+# kubectl run nginx1 --image=nginx:1.18-alpine --restart=Always --labels="app=v1" -n practice --dry-run=client -oyaml |tee nginx1.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    app: v1
+  name: nginx1
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx1
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

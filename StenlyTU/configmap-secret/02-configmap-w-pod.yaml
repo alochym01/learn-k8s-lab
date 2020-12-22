@@ -1,0 +1,35 @@
+# Create a configMap called 'opt' with value key5=val5. Create a new nginx-opt pod that loads the value from key 'key5' in an env variable called 'OPTIONS'.
+# kubectl run nginx --image=nginx:1.18-alpine --dry-run=client -oyaml -n practice
+# kubecrtl exec -it -n practice nginx -- env
+apiVersion: v1
+data:
+  key5: val5
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: opt
+  namespace: practice
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx-cm
+  namespace: practice
+spec:
+  containers:
+  - image: nginx:1.18-alpine
+    name: nginx
+    resources: {}
+    env:
+      - name: OPTIONS
+        valueFrom:
+          configMapKeyRef:
+            name: opt
+            key: key5
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+

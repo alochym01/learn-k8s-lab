@@ -1,0 +1,20 @@
+# kubectl -n practice run busybox --image=busybox --rm -it -- wget -O- http://nginx-last:80 --timeout 2 # This should fail
+# kubectl -n practice run busybox --image=busybox --rm -it --labels=access=granted -- wget -O- http://nginx-last:80 --timeout 2 # This should work
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    access: granted
+  name: busybox-1
+spec:
+  containers:
+  - image: busybox
+    name: busybox-1
+    resources: {}
+    command:
+      - sleep
+      - "3600"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

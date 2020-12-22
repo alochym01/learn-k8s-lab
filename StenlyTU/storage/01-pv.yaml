@@ -1,0 +1,18 @@
+# Create a PersistentVolume of 1Gi, called 'myvolume-practice'.
+# Make it have accessMode of 'ReadWriteOnce' and 'ReadWriteMany', storageClassName 'normal', mounted on hostPath '/mnt/data'.
+# List all PersistentVolume.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: myvolume-practice
+  labels:
+    type: local
+spec:
+  storageClassName: normal
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"

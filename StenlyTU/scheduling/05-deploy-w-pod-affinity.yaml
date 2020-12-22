@@ -1,0 +1,36 @@
+# Add label color=blue to one node and create nginx deployment called blue with 5 replicas and node Affinity rule to place the pods onto the labeled node
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: blue
+  name: blue
+  namespace: practice
+spec:
+  spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: blue
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: blue
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: "color"
+                  operator: In
+                  values:
+                    - "blue"
+      containers:
+      - image: nginx:1.18-alpine
+        name: nginx
+        resources: {}
+status: {}
