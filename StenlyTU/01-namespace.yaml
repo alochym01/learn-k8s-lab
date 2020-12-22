@@ -1,3 +1,5 @@
+# https://github.com/ahmetb/kubernetes-network-policy-recipes -- namespace for network policy
+#
 # Create namespace called: practice.
 # All following commands will be run into this namespace if not specified.
 apiVersion: v1
