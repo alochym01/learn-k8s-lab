@@ -40,7 +40,7 @@
           -v $(pwd):/mnt \
           --env ETCDCTL_API=3 \
           k8s.gcr.io/etcd:3.4.3-0 \
-          /bin/sh -c etcdctl snapshot restore /backup/etcd-snapshot-latest.db --data-dir /mnt/res-test
+          etcdctl snapshot restore /backup/etcd-snapshot-latest.db --data-dir /mnt/res-test
 
       # will restore to ./res folder
       # res
@@ -135,3 +135,5 @@
          1. Remove all stop docker containers `docker container stop $(docker container ls -aq)`
       6. systemctl start docker
       7. systemctl start kubelet
+3. Reference link
+   1. https://elastisys.com/backup-kubernetes-how-and-why/
