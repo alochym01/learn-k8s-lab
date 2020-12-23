@@ -137,3 +137,4 @@
       7. systemctl start kubelet
 3. Reference link
    1. https://elastisys.com/backup-kubernetes-how-and-why/
+   2. https://labs.consol.de/kubernetes/2018/05/25/kubeadm-backup.html
