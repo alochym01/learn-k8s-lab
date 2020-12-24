@@ -12,11 +12,11 @@
           -v $(pwd)/backup:/backup \
           --network host \
           -v /etc/kubernetes/pki/etcd:/etc/kubernetes/pki/etcd \
-          --env ETCDCTL_API=3  k8s.gcr.io/etcd:3.4.3-0 etcdctl \
+          --env ETCDCTL_API=3  k8s.gcr.io/etcd:3.4.13-0 etcdctl \
           --endpoints=https://127.0.0.1:2379 \
           --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-          --cert=/etc/kubernetes/pki/etcd/server.crt \
-          --key=/etc/kubernetes/pki/etcd/server.key \
+          --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+          --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
           snapshot save /backup/etcd-snapshot-latest.db
       ```
    2. Check backup file
@@ -25,11 +25,11 @@
           -v $(pwd)/backup:/backup \
           --network host \
           -v /etc/kubernetes/pki/etcd:/etc/kubernetes/pki/etcd \
-          --env ETCDCTL_API=3  k8s.gcr.io/etcd:3.4.3-0 etcdctl \
+          --env ETCDCTL_API=3  k8s.gcr.io/etcd:3.4.13-0 etcdctl \
           --endpoints=https://127.0.0.1:2379 \
           --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-          --cert=/etc/kubernetes/pki/etcd/server.crt \
-          --key=/etc/kubernetes/pki/etcd/server.key \
+          --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+          --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
           --write-out=table snapshot status /backup/etcd-snapshot-latest.db
       ```
    3. Restore ETCD
@@ -39,7 +39,7 @@
           -v $(pwd)/backup:/backup \
           -v $(pwd):/mnt \
           --env ETCDCTL_API=3 \
-          k8s.gcr.io/etcd:3.4.3-0 \
+          k8s.gcr.io/etcd:3.4.13-0 \
           etcdctl snapshot restore /backup/etcd-snapshot-latest.db --data-dir /mnt/res-test
 
       # will restore to ./res folder
@@ -131,10 +131,8 @@
 		 ```
       3. sudo -i
       4. systemctl stop kubelet
-      5. systemctl stop docker
-         1. Remove all stop docker containers `docker container stop $(docker container ls -aq)`
-      6. systemctl start docker
-      7. systemctl start kubelet
+         1. Stop all api-server, etcd docker containers `docker container stop $(docker container ls -aq)`
+      5. systemctl start kubelet
 3. Reference link
    1. https://elastisys.com/backup-kubernetes-how-and-why/
    2. https://labs.consol.de/kubernetes/2018/05/25/kubeadm-backup.html

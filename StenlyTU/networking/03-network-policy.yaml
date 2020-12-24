@@ -1,3 +1,7 @@
+# Network Policies will apply to 3 entities
+# 1. Other pods that are allowed (exception: a pod cannot block access to itself)
+# 2. Namespaces that are allowed
+# 3. IP blocks (exception: traffic to and from the node where a Pod is running is always allowed, regardless of the IP address of the Pod or the node)
 # Create an nginx-last deployment of 2 replicas, expose it via a ClusterIP service on port 80. Create a NetworkPolicy so that only pods with labels 'access: granted' can access the deployment.
 # kubectl run --labels=access=granted --image=busybox --rm -it -- sh
 # wget -O- http://alochym --timeout 2 # will get 200 ok
