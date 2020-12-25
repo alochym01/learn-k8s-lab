@@ -157,3 +157,4 @@
 1.  kubectl get pods -A
 ## Reference link
 1.   https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
+2.   https://platform9.com/blog/kubernetes-upgrade-the-definitive-guide-to-do-it-yourself/
