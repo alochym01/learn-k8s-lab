@@ -10,3 +10,5 @@
 -   https://kubernetesbyexample.com/
 -   **https://ravikirans.com/cka-kubernetes-exam-study-guide/**
 -   **https://www.bookstack.cn/read/kubernetes-1.17-setup/d144af1504b81c85.md**
+-   **https://brandonwillmott.com/2020/09/03/backup-and-restore-etcd-in-kubernetes-cluster-for-cka-v1-19/**
+-   **https://brandonwillmott.com/2020/10/01/important-directories-to-know-for-kubernetes-cka-exam/**
