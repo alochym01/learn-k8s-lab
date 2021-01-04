@@ -109,7 +109,7 @@
         Annotations:   nginx.ingress.kubernetes.io/rewrite-target: /
         Events:        <none>
         ```
-5.  Check Ingress controller Service IP Address
+5.  Check Ingress controller Service Port
     ```bash
     hadn@worker-1:~/nginx-ingress$ kubectl get svc -n ingress-nginx
     NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
