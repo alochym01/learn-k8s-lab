@@ -97,6 +97,10 @@
             -   br_netfilter module is loaded
                 -   Check - `lsmod | grep br_netfilter`
                 -   Add - `sudo modprobe br_netfilter`
+            -   Enable br_netfilter module is loaded
+                -   `vi /etc/modules-load.d/modules.conf`
+                -   Add - `br_netfilter`
+                -   reboot 
             -   net.bridge.bridge-nf-call-iptables is set to 1 in your sysctl config
                 ```bash
                 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
