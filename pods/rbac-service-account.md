@@ -73,6 +73,32 @@
    yes
    kubectl auth can-i list daemonset --as system:serviceaccount:default:sa-alochym
    no
+   kubectl auth can-i --list --as system:serviceaccount:monitoring:prometheus-k8s
+   Resources                                       Non-Resource URLs   Resource Names   Verbs
+   selfsubjectaccessreviews.authorization.k8s.io   []                  []               [create]
+   selfsubjectrulesreviews.authorization.k8s.io    []                  []               [create]
+   endpoints                                       []                  []               [get list watch]
+   pods                                            []                  []               [get list watch]
+   services                                        []                  []               [get list watch]
+   ingresses.extensions                            []                  []               [get list watch]
+                                                   [/api/*]            []               [get]
+                                                   [/api]              []               [get]
+                                                   [/apis/*]           []               [get]
+                                                   [/apis]             []               [get]
+                                                   [/healthz]          []               [get]
+                                                   [/healthz]          []               [get]
+                                                   [/livez]            []               [get]
+                                                   [/livez]            []               [get]
+                                                   [/metrics]          []               [get]
+                                                   [/openapi/*]        []               [get]
+                                                   [/openapi]          []               [get]
+                                                   [/readyz]           []               [get]
+                                                   [/readyz]           []               [get]
+                                                   [/version/]         []               [get]
+                                                   [/version/]         []               [get]
+                                                   [/version]          []               [get]
+                                                   [/version]          []               [get]
+   nodes/metrics                                   []                  []               [get]
    ```
 5. Reference link
    1. https://www.adaltas.com/en/2019/08/07/users-rbac-kubernetes/
