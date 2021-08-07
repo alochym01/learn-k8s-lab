@@ -74,6 +74,16 @@
    kubectl auth can-i list daemonset --as system:serviceaccount:default:sa-alochym
    no
    ```
-5. Reference link
+5. Check permission with "can-i" on specific namespace
+   1. Syntax: `kubectl auth can-i $action $resource --as system:serviceaccount:namespace:$subject --namespace alochym`
+   ```bash
+   kubectl auth can-i get pods --as system:serviceaccount:default:sa-alochym --namespace alochym
+   no
+   kubectl auth can-i list pods --as system:serviceaccount:default:sa-alochym --namespace default
+   yes
+   kubectl auth can-i list daemonset --as system:serviceaccount:default:sa-alochym --namespace monitoring
+   no
+   ```   
+6 Reference link
    1. https://www.adaltas.com/en/2019/08/07/users-rbac-kubernetes/
    2. https://cdn2.hubspot.net/hubfs/1665891/Assets/Kubernetes%20Security%20-%20Operating%20Kubernetes%20Clusters%20and%20Applications%20Safely.pdf
